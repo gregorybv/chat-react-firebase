@@ -1,8 +1,18 @@
-import React from 'react'
+import React from "react"
 
 const Navbar = () => {
   return (
-    <div>Navbar</div>
+    <div className='navbar'>
+      <span className='logo'>GB Chat</span>
+      <div className='user'>
+        <img
+          src='https://images.unsplash.com/photo-1534809027769-b00d750a6bac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
+          alt='spider'
+        />
+        <span>John</span>
+        <button>logout</button>
+      </div>
+    </div>
   )
 }
 
