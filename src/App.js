@@ -1,12 +1,12 @@
-
-import './App.css';
+import Register from "./pages/Register"
+import "./style.scss"
 
 function App() {
   return (
-    <div >
-
+    <div>
+      <Register />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
