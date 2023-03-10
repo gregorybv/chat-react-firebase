@@ -16,6 +16,5 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig)
 export const auth = getAuth()
-
 export const storage = getStorage() // берем с сайта firebase и импортируем
 export const db = getFirestore() // не забыть импортировать getFirestore
