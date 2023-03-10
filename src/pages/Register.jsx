@@ -1,17 +1,18 @@
 import React, { useState } from "react"
 import Add from "../img/addAvatar.png"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth" // с сайта firebase
-import { auth, storage, db } from "../firebase" // добавляем для авторизации
+import { auth, db, storage } from "../firebase" // добавляем для авторизации
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { doc, setDoc } from "firebase/firestore"
+import { useNavigate } from "react-router-dom"
 
 const Register = () => {
   const [err, setErr] = useState(false) //создаем для обработки catch(err)
+  const navigate = useNavigate() //после добавления путей в App.js создаем навигацию
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     // console.log(e.target[0].value) //таким образом мы выведем в консоль name
-
     const displayName = e.target[0].value
     const email = e.target[1].value
     const password = e.target[2].value
@@ -46,9 +47,8 @@ const Register = () => {
               photoURL: downloadURL,
             })
 
-            await setDoc(doc(db, 'userChats', res.user.uid), {})
-
-            
+            await setDoc(doc(db, "userChats", res.user.uid), {})
+            navigate("/")
           })
         }
       )
