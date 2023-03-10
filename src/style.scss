@@ -176,6 +176,38 @@
     }
     .chat {
       flex: 2;
+
+      .chatInfo {
+        height: 50px;
+        background-color: #5d5b8d;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        color: lightgray;
+      }
+
+      .chatInfo {
+        display: flex;
+        gap: 10px;
+
+        img {
+          height: 24px;
+          cursor: pointer;
+        }
+      }
+
+      .messages {
+        background-color: #ddddf7;
+        padding: 10px;
+        height: calc(100% - 160px);
+      }
+
+      .input {
+        height: 50px;
+        background-color: white;
+        padding: 10px;
+      }
     }
   }
 }
