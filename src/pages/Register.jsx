@@ -6,7 +6,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { doc, setDoc } from "firebase/firestore"
 
 const Register = () => {
-  const [err, setErr] = useState(false) //создаем это для обработки catch(err)
+  const [err, setErr] = useState(false) //создаем для обработки catch(err)
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -45,6 +45,10 @@ const Register = () => {
               email,
               photoURL: downloadURL,
             })
+
+            await setDoc(doc(db, 'userChats', res.user.uid), {})
+
+            
           })
         }
       )
