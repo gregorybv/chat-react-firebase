@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react"
 import {
   collection,
   doc,
+  getDoc,
   getDocs,
   query,
   serverTimestamp,
@@ -45,7 +46,7 @@ const Search = () => {
         ? currentUser.uid + user.uid
         : user.uid + currentUser.uid
     try {
-      const res = await getDocs(db, "chats", combinedId)
+      const res = await getDoc(doc(db, "chats", combinedId))
 
       if (!res.exists()) {
         // создаем чат в коллекции чатов
@@ -58,10 +59,22 @@ const Search = () => {
             displayName: user.displayName,
             photoUrl: user.photoUrl,
           },
-          [combinedId + ".date"] : serverTimestamp()
+          [combinedId + ".date"]: serverTimestamp(),
+        })
+
+        await updateDoc(doc(db, "userChats", user.uid), {
+          [combinedId + ".userInfo"]: {
+            uid: currentUser.uid,
+            displayName: currentUser.displayName,
+            photoUrl: currentUser.photoUrl,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
         })
       }
     } catch (err) {}
+
+    setUser(null)
+    setUsername("")
   }
 
   return (
@@ -72,6 +85,7 @@ const Search = () => {
           placeholder='Find a user'
           onKeyDown={handleKey}
           onChange={(e) => setUsername(e.target.value)}
+          value={username}
         />
       </div>
       {/* обработка ошибки */}
